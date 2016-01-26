@@ -4,13 +4,15 @@ import datetime
 import time
 import io
 import user_agents
+import os
 from PIL import Image, ImageDraw
 from bottle.ext import sqlite
 
+BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 app = bottle.Bottle()
-plugin = sqlite.Plugin(dbfile='./database.sqlite3')
+plugin = sqlite.Plugin(dbfile=os.path.join(BASE_PATH, 'database.sqlite3'))
 app.install(plugin)
-
+bottle.TEMPLATE_PATH.insert(0 ,os.path.join(BASE_PATH, 'templates'))
 
 def xss_filter(text):
     return bleach.clean(
@@ -77,19 +79,19 @@ def counter(db):
 @app.route('/visits')
 def visits(db):
     visits = db.execute('SELECT * FROM Visits')
-    return bottle.template('./templates/visits.html',
+    return bottle.template('visits.html',
         visits=visits, time_format=time_format,
         ua_parse=user_agents.parse)
 
 
 @app.route('/')
 def index():
-    return bottle.template('./templates/index.html')
+    return bottle.template('index.html')
 
     
 @app.route('/gallery')
 def gallery():
-	return bottle.template('./templates/gallery.html')
+	return bottle.template('gallery.html')
 
     
 @app.route('/static/<path:path>')
@@ -100,7 +102,7 @@ def static(path):
 @app.route('/feedback')
 def feedback(db):
     comments = db.execute('SELECT * FROM Comments')
-    return bottle.template('./templates/feedback.html',
+    return bottle.template('feedback.html',
         comments=comments, xss_filter=xss_filter,
         time_format=time_format)
 
@@ -122,3 +124,4 @@ def post_comment(db):
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True, reloader=True)
+
