@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@lexsam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link href="/static/css/feedback.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="/static/images/icon1.ico">
+</head>
+<body>
+<div id="page_align" class="b3radius">
+    <div id="header">
+        <div id="header_nav">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/gallery">Галерея</a></li>
+                <li><a href="/feedback">Комментарии</a></li>
+                <li class="menu_active"><a href="/visits">Визиты</a></li>
+            </ul>
+            <img src="/counter" style = float:right>
+        </div>
+        <div id="header_cont">
+            <h1><span style="color: #98CA60">@lex</span><span style="color: #515151">sam</span></h1>
+        </div>
+    </div>
+    <div id="sidebar" class="f_left">
+        <div class="sb_header"><i></i>Навигация</div>
+        <div class="sb_nav">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/gallery">Галерея</a></li>
+                <li><a href="/feedback">Комментарии</a></li>
+                <li><a href="/visits">Визиты</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content" class="f_right">
+        % for visit in visits:
+        <li>{{time_format(visit['timestamp'])}}- {{visit['ip']}} - {{ua_parse(visit['user_agent'])}}</li>
+        % end
+    </div>
+    <div class="clr">
+
+    </div>
+</div>
+</body>
+</html>

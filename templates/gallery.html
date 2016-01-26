@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@lexsam</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="/static/images/icon1.ico">
+    <script type="text/javascript" src="/static/js/gallery.js"></script>
+</head>
+<body onload ="my_getCookie()">
+<div id="page_align" class="b3radius">
+    <div id="header">
+        <div id="header_nav">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li class="menu_active"><a href="/gallery">Галерея</a></li>
+                <li><a href="/feedback">Комментарии</a></li>
+                <li><a href="/visits">Визиты</a></li>
+            </ul>
+            <img src="/counter" style = float:right>
+        </div>
+        <div id="header_cont">
+            <h1><span style="color: #98CA60">@lex</span><span style="color: #515151">sam</span></h1>
+        </div>
+    </div>
+    <div id="sidebar" class="f_left">
+        <div class="sb_header"><i></i>Навигация</div>
+        <div class="sb_nav">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/gallery">Галерея</a></li>
+                <li><a href="/feedback">Комментарии</a></li>
+                <li><a href="/visits">Визиты</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content" class="f_right">
+        <div class ="gallery">
+            <a href="#1"><img src="/static/images/photo/small/01.png" width="225" height="150" alt=""/></a>
+            <a href="#2"><img src="/static/images/photo/small/02.png" width="225" height="150" alt=""/></a>
+            <a href="#3"><img src="/static/images/photo/small/03.png" width="225" height="150" alt=""/></a>
+            <a href="#4"><img src="/static/images/photo/small/04.png" width="225" height="150" alt=""/></a>
+            <a href="#5"><img src="/static/images/photo/small/05.png" width="225" height="150" alt=""/></a>
+            <a href="#6"><img src="/static/images/photo/small/06.png" width="225" height="150" alt=""/></a>
+            <a href="#7"><img src="/static/images/photo/small/07.png" width="225" height="150" alt=""/></a>
+            <a href="#8"><img src="/static/images/photo/small/08.png" width="225" height="150" alt=""/></a>
+            <a href="#9"><img src="/static/images/photo/small/09.png" width="225" height="150" alt=""/></a>
+        </div>
+    </div>
+    <div class="clr">
+    </div>
+</div>
+<div id = "window_back" >
+    <div id="window" class="b3radius">
+        <div id="left_part" class="f_left">
+            <div id="left_button">
+                <a href="#" id="left_button_a"><img src="/static/images/left_button.png" width="50" height="50" alt=""/></a>
+            </div>
+        </div>
+        <div id="center_part" class="f_left">
+            <div id="imageContainer" class="f_left"></div>
+        </div>
+        <div id="right_part" class="f_left">
+            <div id="exit_button" class="f_right">
+                <a href="#hide"><img src="/static/images/exit.png" width="25" height="25" alt=""/></a>
+            </div>
+            <div id="star_button" class="f_right">
+                <a href="#" id="star_button_a"><img src="/static/images/star.png" width="50" height="50" alt=""/></a>
+            </div>
+            <div id="right_button" class="f_right">
+                <a href="#" id="right_button_a"><img src="/static/images/right_button.png" width="50" height="50" alt=""/></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id = "backer_help">
+    <div id="helper" class="b3radius">
+        <div id="help_info">
+            <span style="font-size: medium; font-weight: bold">Справка</span><br>
+            Вы находитесь в галерее.<br><br>
+            Нажмите на фото, чтобы перейти в режим просмотра.<br><br>
+            В режиме просмотра можно переключаться между фотографиям с помощью кнопок влево и вправо,
+            а также при помощи мыши<br><br>
+            Нажав на звезду вы можете установить фотографию, которая будет открываться при входе в галерею.<br>
+            Повторное нажатие на звезду - отменит предыдущую функцию.<br><br>
+            Чтобы выйти из справки нужно кликнуть по "close" или нажать Esc или F1
+        </div>
+        <br><br><br>
+        <input type="button" value="close" onclick="close_helper()">
+    </div>
+</div>
+</body>
+</html>
