@@ -120,8 +120,12 @@ def post_comment(db):
         bottle.redirect('/feedback')
     else:
         return 'You should not pass'
-    
-    
+
+        
+@app.route('/test')
+def test():
+    return bottle.request.environ.get('HTTP_X_FORWARDED_FOR', 'None') + ' ' + bottle.request.environ.get('REMOTE_ADDR')
+       
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True, reloader=True)
 
