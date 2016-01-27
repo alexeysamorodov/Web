@@ -44,7 +44,7 @@ def counter(db):
     db.execute('UPDATE Views SET total=?, today=?, timestamp=?', (total_views, today_views, ts))
     
     
-    ip = bottle.request.environ.get('REMOTE_ADDR')
+    ip = bottle.request.environ.get('HTTP_X_FORWARDED_FOR') or bottle.request.environ.get('REMOTE_ADDR')
     user_agent = bottle.request.headers.get('User-Agent')
     ts = time.time() + 5*60*60
     ts_limit = ts - 30*60
@@ -112,7 +112,7 @@ def post_comment(db):
     text = bottle.request.forms.get('text')
     name = bottle.request.forms.get('name')
     if text and name:
-        ip = bottle.request.environ.get('REMOTE_ADDR')
+        ip = bottle.request.environ.get('HTTP_X_FORWARDED_FOR') or bottle.request.environ.get('REMOTE_ADDR')
         user_agent = bottle.request.headers.get('User-Agent')
         timestamp = time.time() + 5*60*60
         db.execute('INSERT INTO Comments(ip, user_agent, timestamp, name, message) VALUES (?, ?, ?, ?, ?)',
@@ -121,11 +121,7 @@ def post_comment(db):
     else:
         return 'You should not pass'
 
-        
-@app.route('/test')
-def test():
-    return bottle.request.environ.get('HTTP_X_FORWARDED_FOR', 'None') + ' ' + bottle.request.environ.get('REMOTE_ADDR')
-       
+ 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True, reloader=True)
 
