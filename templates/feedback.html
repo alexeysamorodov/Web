@@ -35,14 +35,26 @@
         </div>
     </div>
     <div id="content" class="f_right">
-        % for comment in comments:
-        <li><b>{{time_format(comment['timestamp'])}} {{comment['name']}}:</b> {{!xss_filter(comment['message'])}}</li>
-        % end
-        <form method="POST" action="/post_comment">
-            <input type="text" name="name"  placeholder="Введите имя"/>
-            <textarea name="text" placeholder="Введите комментарий"></textarea>
-            <input type="submit" />
-        </form>
+        <div id ="table_style">
+            <table>
+                <caption>Комментарии</caption>
+                <tr>
+                    <th>Дата-время</th>
+                    <th>Имя</th>
+                    <th>Комментарий</th>
+                </tr>
+            % for comment in comments:
+                <tr><td>{{time_format(comment['timestamp'])}}</td><td>{{comment['name']}}</td><td class="message">{{!xss_filter(comment['message'])}}</td></tr>
+            % end
+            </table>
+        </div>
+        <div id="form_feedback">
+            <form method="POST" action="/post_comment">
+                <input class="f_left" type="text" name="name"  placeholder="Введите имя"/>
+                <textarea  name="text" placeholder="Введите комментарий"></textarea>
+                <input type="submit" />
+            </form>
+        </div>
     </div>
     <div class="clr">
 

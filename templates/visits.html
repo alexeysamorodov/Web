@@ -35,12 +35,21 @@
         </div>
     </div>
     <div id="content" class="f_right">
-        % for visit in visits:
-        <li>{{time_format(visit['timestamp'])}}- {{visit['ip']}} - {{ua_parse(visit['user_agent'])}}</li>
-        % end
+        <div id ="table_style">
+            <table>
+                <caption>Посещения</caption>
+                <tr>
+                    <th>Дата-время</th>
+                    <th>ip</th>
+                    <th>Устройство</th>
+                </tr>
+                % for visit in visits:
+                    <tr><td>{{time_format(visit['timestamp'])}}</td><td>{{visit['ip']}}</td><td>{{ua_parse(visit['user_agent'])}}</td></tr>
+                % end
+            </table>
+        </div>
     </div>
     <div class="clr">
-
     </div>
 </div>
 </body>

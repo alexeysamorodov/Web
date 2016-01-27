@@ -46,7 +46,7 @@ def counter(db):
     
     ip = bottle.request.environ.get('REMOTE_ADDR')
     user_agent = bottle.request.headers.get('User-Agent')
-    ts = time.time()
+    ts = time.time() + 5*60*60
     ts_limit = ts - 30*60
     visits_count = db.execute(
         'SELECT COUNT(*) FROM Visits WHERE ip=? AND user_agent=? AND timestamp>?',
@@ -114,7 +114,7 @@ def post_comment(db):
     if text and name:
         ip = bottle.request.environ.get('REMOTE_ADDR')
         user_agent = bottle.request.headers.get('User-Agent')
-        timestamp = time.time()
+        timestamp = time.time() + 5*60*60
         db.execute('INSERT INTO Comments(ip, user_agent, timestamp, name, message) VALUES (?, ?, ?, ?, ?)',
             (ip, user_agent, timestamp, name, text))
         bottle.redirect('/feedback')
