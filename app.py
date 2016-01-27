@@ -109,8 +109,8 @@ def feedback(db):
     
 @app.route('/post_comment', method=['POST'])
 def post_comment(db):
-    text = bottle.request.forms.get('text')
-    name = bottle.request.forms.get('name')
+    text = bottle.request.forms.text
+    name = bottle.request.forms.name
     if text and name:
         ip = bottle.request.environ.get('HTTP_X_FORWARDED_FOR') or bottle.request.environ.get('REMOTE_ADDR')
         user_agent = bottle.request.headers.get('User-Agent')
